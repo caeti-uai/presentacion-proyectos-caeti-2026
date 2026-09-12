@@ -374,10 +374,26 @@ export default function Home() {
             <div className="slide trunk-slide">
               <Kicker>Proyecto troncal · TI/26/140</Kicker>
               <SlideTitle>Una arquitectura que conecta la investigación con la gestión real del Centro</SlideTitle>
-              <div className="trunk-layout">
-                <div className="trunk-core"><Network /><span>Arquitectura adaptativa</span><small>Método · capacidades · validación</small></div>
-                <div className="trunk-orbits">
-                  <span><Bot /> Agentes</span><span><Users /> Personas</span><span><Workflow /> Procesos</span><span><Boxes /> Proyectos</span>
+              <div className="trunk-scene">
+                <div className="trunk-layout">
+                  <div className="trunk-core"><Network /><span>Arquitectura adaptativa</span><small>Método · capacidades · validación</small></div>
+                  <div className="trunk-orbits">
+                    <span><Bot /> Agentes</span><span><Users /> Personas</span><span><Workflow /> Procesos</span><span><Boxes /> Proyectos</span>
+                  </div>
+                </div>
+                <div className="cycle-collage" aria-label="Ciclo visual de hiperproductividad">
+                  <div className="cycle-heading"><Sparkles /><span>Productividad que escala<br />ciclo tras ciclo</span></div>
+                  {[
+                    ['/assets/hiper-agentes.png', '01 · Acción'],
+                    ['/assets/hiper-canales.jpg', '02 · Amplificación'],
+                    ['/assets/hiper-tablero.png', '03 · Recursión'],
+                  ].map(([src, label], index) => (
+                    <figure className={`cycle-shot cycle-shot-${index + 1}`} key={src}>
+                      <Image src={src} alt={label} fill sizes="(max-width: 900px) 28vw, 15vw" />
+                      <figcaption>{label}</figcaption>
+                    </figure>
+                  ))}
+                  <div className="cycle-scale"><span>P¹</span><ChevronRight /><span>P²</span><ChevronRight /><span>P³</span><ChevronRight /><strong>Pⁿ</strong></div>
                 </div>
               </div>
               <div className="director-strip"><span>Dirección</span><strong>Alejandro Sartorio</strong><span>Ingeniería de Software</span></div>
