@@ -4,7 +4,6 @@ import {
   ArrowLeft,
   ArrowRight,
   Bot,
-  Boxes,
   BrainCircuit,
   ChevronRight,
   CircleDot,
@@ -206,13 +205,13 @@ const hiperEvidence = [
   { src: '/assets/hiper-cerebro.png', title: 'Cerebro organizacional', text: 'Señales dispersas convertidas en contexto compartido.' },
   { src: '/assets/hiper-tablero.png', title: 'Tablero de productividad', text: 'Métricas y aprendizaje para medir cómo escala el sistema.' },
   { src: '/assets/hiper-terminal.png', title: 'Motores de agentes', text: 'Ambientes donde múltiples agentes trabajan en paralelo.' },
+  { src: '/assets/hiper-evidencia-adjunta.png', title: 'Coordinación multiagente', text: 'Agentes especializados trabajan en paralelo, conservan contexto y verifican resultados.' },
 ];
 
 const slideLabels = [
   'Portada',
   'Misión y visión',
   'El desafío',
-  'Proyecto troncal',
   'Método',
   'Colaboración',
   'Hiperproductividad en acción',
@@ -371,36 +370,6 @@ export default function Home() {
           )}
 
           {slide === 3 && (
-            <div className="slide trunk-slide">
-              <Kicker>Proyecto troncal · TI/26/140</Kicker>
-              <SlideTitle>Una arquitectura que conecta la investigación con la gestión real del Centro</SlideTitle>
-              <div className="trunk-scene">
-                <div className="trunk-layout">
-                  <div className="trunk-core"><Network /><span>Arquitectura adaptativa</span><small>Método · capacidades · validación</small></div>
-                  <div className="trunk-orbits">
-                    <span><Bot /> Agentes</span><span><Users /> Personas</span><span><Workflow /> Procesos</span><span><Boxes /> Proyectos</span>
-                  </div>
-                </div>
-                <div className="cycle-collage" aria-label="Ciclo visual de hiperproductividad">
-                  <div className="cycle-heading"><Sparkles /><span>Productividad que escala<br />ciclo tras ciclo</span></div>
-                  {[
-                    ['/assets/hiper-agentes.png', '01 · Acción'],
-                    ['/assets/hiper-canales.jpg', '02 · Amplificación'],
-                    ['/assets/hiper-tablero.png', '03 · Recursión'],
-                  ].map(([src, label], index) => (
-                    <figure className={`cycle-shot cycle-shot-${index + 1}`} key={src}>
-                      <Image src={src} alt={label} fill sizes="(max-width: 900px) 28vw, 15vw" />
-                      <figcaption>{label}</figcaption>
-                    </figure>
-                  ))}
-                  <div className="cycle-scale"><span>P¹</span><ChevronRight /><span>P²</span><ChevronRight /><span>P³</span><ChevronRight /><strong>Pⁿ</strong></div>
-                </div>
-              </div>
-              <div className="director-strip"><span>Dirección</span><strong>Alejandro Sartorio</strong><span>Ingeniería de Software</span></div>
-            </div>
-          )}
-
-          {slide === 4 && (
             <div className="slide method-slide">
               <Kicker>Método y plataforma experimental</Kicker>
               <SlideTitle>La arquitectura evoluciona mientras el Centro trabaja</SlideTitle>
@@ -420,7 +389,7 @@ export default function Home() {
             </div>
           )}
 
-          {slide === 5 && (
+          {slide === 4 && (
             <div className="slide screenshot-slide">
               <div className="screenshot-copy">
                 <Kicker>Espacio colaborativo</Kicker>
@@ -432,7 +401,7 @@ export default function Home() {
             </div>
           )}
 
-          {slide === 6 && (
+          {slide === 5 && (
             <div className="slide evidence-slide">
               <div className="evidence-heading"><div><Kicker>Hiperproductividad en acción</Kicker><SlideTitle>Una arquitectura visible en entornos reales</SlideTitle></div><span>Seleccioná para ampliar</span></div>
               <div className="evidence-mosaic">
@@ -447,7 +416,7 @@ export default function Home() {
             </div>
           )}
 
-          {slide === 7 && (
+          {slide === 6 && (
             <div className="slide capabilities-slide">
               <Kicker>Soporte para investigar</Kicker>
               <SlideTitle>Seis capacidades institucionales conectadas</SlideTitle>
@@ -464,7 +433,7 @@ export default function Home() {
             </div>
           )}
 
-          {slide === 8 && (
+          {slide === 7 && (
             <div className="slide community-slide">
               <div className="community-copy">
                 <Kicker>Comunidad CAETI Rosario</Kicker>
@@ -475,7 +444,7 @@ export default function Home() {
             </div>
           )}
 
-          {slide === 9 && (
+          {slide === 8 && (
             <div className="slide lines-slide">
               <Kicker>CAETI 2026</Kicker>
               <SlideTitle>Tres líneas reúnen los proyectos del Centro</SlideTitle>
@@ -492,7 +461,7 @@ export default function Home() {
             </div>
           )}
 
-          {slide === 10 && (
+          {slide === 9 && (
             <div className="slide projects-slide">
               <div className="projects-heading">
                 <div><Kicker>Mapa vivo del CAETI</Kicker><SlideTitle>Proyectos conectados por una arquitectura común</SlideTitle></div>
@@ -508,7 +477,7 @@ export default function Home() {
             </div>
           )}
 
-          {slide === 11 && (
+          {slide === 10 && (
             <div className="slide actors-slide">
               <Kicker>Sistema sociotécnico</Kicker>
               <SlideTitle>Personas y agentes aportan capacidades diferentes sobre un mismo entorno</SlideTitle>
@@ -521,7 +490,7 @@ export default function Home() {
             </div>
           )}
 
-          {slide === 12 && (
+          {slide === 11 && (
             <div className="slide landing-slide">
               <Kicker>IA y transformación organizacional</Kicker>
               <h2 className="landing-title"><span>EL ATERRIZAJE DE LA</span><strong>HIPER<sup>N</sup>PRODUCTIVIDAD</strong></h2>
