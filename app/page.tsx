@@ -221,8 +221,7 @@ const slideLabels = [
   'Líneas de investigación',
   'Mapa de proyectos',
   'Personas y agentes',
-  'Hiperproductividad',
-  'Cierre',
+  'El aterrizaje de la Hiperⁿproductividad',
 ];
 
 function Kicker({ children }: { children: React.ReactNode }) {
@@ -274,6 +273,7 @@ export default function Home() {
   const [lineFilter, setLineFilter] = useState<LineKey | 'all'>('all');
   const [elapsed, setElapsed] = useState(0);
   const [evidenceIndex, setEvidenceIndex] = useState<number | null>(null);
+  const [closingVision, setClosingVision] = useState<'fantasia' | 'presente' | 'posible'>('fantasia');
 
   useEffect(() => {
     const timer = window.setInterval(() => setElapsed((value) => value + 1), 1000);
@@ -522,30 +522,23 @@ export default function Home() {
           )}
 
           {slide === 12 && (
-            <div className="slide hiper-slide">
-              <div className="hiper-visual">
-                <Image src="/assets/hiperproductividad.jpeg" alt="Identidad visual de Hiperproductividad" width={1920} height={1920} unoptimized />
+            <div className="slide landing-slide">
+              <Kicker>IA y transformación organizacional</Kicker>
+              <h2 className="landing-title"><span>EL ATERRIZAJE DE LA</span><strong>HIPER<sup>N</sup>PRODUCTIVIDAD</strong></h2>
+              <p className="landing-lead">De la capacidad de la IA a su adopción efectiva en la última milla organizacional.</p>
+              <div className="landing-stage">
+                <div className="landing-tabs">
+                  <button className={closingVision === 'fantasia' ? 'active' : ''} onClick={() => setClosingVision('fantasia')}><b>01</b><span>La fantasía profesional</span><small>Humanos + robots en la oficina consolidada</small></button>
+                  <button className={closingVision === 'presente' ? 'active' : ''} onClick={() => setClosingVision('presente')}><b>02</b><span>Lo que ya hacemos</span><small>El ecosistema experimental del CAETI</small></button>
+                  <button className={closingVision === 'posible' ? 'active' : ''} onClick={() => setClosingVision('posible')}><b>03</b><span>La organización posible</span><small>Un profesional ↔ un agente gemelo</small></button>
+                </div>
+                <div className="landing-display">
+                  {closingVision === 'fantasia' && <figure className="landing-photo"><Image src="/assets/colaboracion-humanos-robots.jpg" alt="Profesionales y robots colaborando en una oficina" fill sizes="55vw" unoptimized /><figcaption><b>IMAGINARIO COLECTIVO</b><strong>La oficina conocida incorpora nuevos compañeros digitales</strong><span>Procesos estandarizados · roles reconocibles · convivencia humano–robot</span></figcaption></figure>}
+                  {closingVision === 'presente' && <div className="landing-present"><div className="landing-tech-grid"><figure><Image src="/assets/hiper-cerebro.png" alt="Cerebro organizacional" fill sizes="18vw" unoptimized /><figcaption>Datos</figcaption></figure><figure><Image src="/assets/hiper-terminal.png" alt="Agentes trabajando en paralelo" fill sizes="18vw" unoptimized /><figcaption>Agentes</figcaption></figure><figure><Image src="/assets/hiper-canales.jpg" alt="Canales colaborativos" fill sizes="18vw" unoptimized /><figcaption>Procesos</figcaption></figure></div><div className="landing-core"><Network /><b>CAETI</b><small>canales · modelos · herramientas · integraciones · memoria</small></div></div>}
+                  {closingVision === 'posible' && <div className="landing-twins"><div className="twin-node"><Users /><b>Profesional</b><small>Objetivos · criterio · autoridad</small></div><ChevronRight /><div className="twin-node twin-agent"><Bot /><b>Agente gemelo</b><small>Interfaz única y contexto personal</small></div><ChevronRight /><div className="twin-partners"><span>Personas</span><span>Agentes</span><span>Robots</span><span>Sistemas</span></div><p>La complejidad queda detrás del agente: el profesional mantiene el control y delega la coordinación.</p></div>}
+                </div>
               </div>
-              <div className="hiper-copy">
-                <Kicker>Una propiedad de la adaptación</Kicker>
-                <SlideTitle>La arquitectura adaptativa permite alcanzar hiperproductividad</SlideTitle>
-                <p className="hiper-formula"><span>Entornos de agentes</span><i>×</i><span>Trabajo colaborativo tipo Slack</span><i>×</i><span>Gestión institucional tipo Odoo</span><strong>= Hiperproductividad</strong></p>
-                <p>La arquitectura articula agentes, conversaciones y procesos de gestión sobre un contexto común. Cada resultado deja evidencia útil para el próximo ciclo de trabajo.</p>
-                <a href="https://hiperprodu.asartorio.online/" target="_blank" rel="noreferrer">Explorar Hiperproductividad <ArrowRight size={17} /></a>
-              </div>
-            </div>
-          )}
-
-          {slide === 13 && (
-            <div className="slide closing-slide">
-              <div className="closing-network" aria-hidden="true"><Network /><span /><span /><span /></div>
-              <Kicker>CAETI · UAI</Kicker>
-              <SlideTitle>La plataforma convierte al Centro en un laboratorio vivo de sistemas adaptativos</SlideTitle>
-              <p>Los proyectos comparten un entorno que sostiene su gestión y, al mismo tiempo, permite investigar nuevas formas de colaboración entre personas, agentes y sistemas.</p>
-              <div className="closing-actions">
-                <div><strong>9</strong><span>proyectos</span></div><div><strong>3</strong><span>líneas</span></div><div><strong>1</strong><span>entorno común</span></div>
-              </div>
-              <p className="thanks">Muchas gracias</p>
+              <p className="landing-feedback">{closingVision === 'fantasia' ? 'La imagen compartida: humanos y robots conviven dentro de una oficina y ejecutan procesos conocidos.' : closingVision === 'presente' ? 'La práctica presente: agentes, canales, datos e integraciones ya sostienen trabajo real de investigación y gestión.' : 'La propuesta organizacional: cada profesional puede concentrar su relación con personas, agentes, robots y sistemas en una interfaz inteligente.'}</p>
             </div>
           )}
         </div>
