@@ -428,10 +428,10 @@ export default function Home() {
                 <Image src="/assets/hiperproductividad.jpeg" alt="Identidad visual de Hiperproductividad" width={1920} height={1920} unoptimized />
               </div>
               <div className="hiper-copy">
-                <Kicker>Un caso alineado con la adaptación</Kicker>
-                <SlideTitle>Hiperproductividad convierte cada interacción en contexto para el siguiente ciclo</SlideTitle>
-                <p className="hiper-formula"><span>productividad humana</span><i>×</i><span>contexto</span><i>×</i><span>agentes</span><i>×</i><span>procesos</span><i>×</i><span>trazabilidad</span><strong>= productividadⁿ</strong></p>
-                <p>La plataforma articula proyectos, documentos, evidencias y recorridos. El resultado de un ciclo alimenta al próximo y permite que el sistema evolucione.</p>
+                <Kicker>Una propiedad de la adaptación</Kicker>
+                <SlideTitle>La arquitectura adaptativa permite alcanzar hiperproductividad</SlideTitle>
+                <p className="hiper-formula"><span>Entornos de agentes</span><i>×</i><span>Trabajo colaborativo tipo Slack</span><i>×</i><span>Gestión institucional tipo Odoo</span><strong>= Hiperproductividad</strong></p>
+                <p>La arquitectura articula agentes, conversaciones y procesos de gestión sobre un contexto común. Cada resultado deja evidencia útil para el próximo ciclo de trabajo.</p>
                 <a href="https://hiperprodu.asartorio.online/" target="_blank" rel="noreferrer">Explorar Hiperproductividad <ArrowRight size={17} /></a>
               </div>
             </div>
