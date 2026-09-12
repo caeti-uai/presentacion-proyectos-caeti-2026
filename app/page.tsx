@@ -40,17 +40,17 @@ const lines: Record<LineKey, { label: string; short: string; color: string }> = 
   robotica: {
     label: 'Automatización y Robótica',
     short: 'Robótica',
-    color: '#ffb13b',
+    color: '#d50851',
   },
   software: {
     label: 'Ingeniería de Software',
     short: 'Software',
-    color: '#54d6c7',
+    color: '#7d1535',
   },
   educacion: {
     label: 'Sociedad del Conocimiento y Tecnologías aplicadas a la Educación',
     short: 'Educación',
-    color: '#8da8ff',
+    color: '#0d1640',
   },
 };
 
@@ -142,6 +142,7 @@ const peoplePortraits = [
 
 const slideLabels = [
   'Portada',
+  'Misión y visión',
   'El desafío',
   'Proyecto troncal',
   'Método',
@@ -149,6 +150,7 @@ const slideLabels = [
   'Colaboración',
   'Gestión institucional',
   'Capacidades',
+  'Comunidad CAETI',
   'Líneas de investigación',
   'Mapa de proyectos',
   'Personas y agentes',
@@ -248,7 +250,7 @@ export default function Home() {
 
       <header className="topbar">
         <div className="brand-lockup">
-          <span className="brand-mark"><Network size={19} /></span>
+          <Image className="uai-logo" src="/assets/uai-logo.png" alt="Universidad Abierta Interamericana" width={147} height={29} unoptimized />
           <div><strong>CAETI</strong><span>UAI · Rosario</span></div>
         </div>
         <div className="progress-track" aria-label={`Diapositiva ${slide + 1} de ${slideLabels.length}`}>
@@ -277,6 +279,17 @@ export default function Home() {
           )}
 
           {slide === 1 && (
+            <div className="slide identity-slide">
+              <Kicker>Centro de Altos Estudios en Tecnología Informática</Kicker>
+              <SlideTitle>Investigación aplicada que conecta universidad, industria y sociedad</SlideTitle>
+              <div className="identity-columns">
+                <div><span>Misión</span><p>Contribuir al desarrollo de las tecnologías de la información y la comunicación mediante investigación básica y aplicada, formación de recursos humanos y transferencia de resultados.</p></div>
+                <div><span>Visión</span><p>Abordar problemas relevantes y necesidades sociales mediante soluciones tecnológicas basadas en ciencia, técnica, pensamiento organizador e innovación.</p></div>
+              </div>
+            </div>
+          )}
+
+          {slide === 2 && (
             <div className="slide challenge-slide">
               <Kicker>El desafío</Kicker>
               <SlideTitle>Los sistemas institucionales necesitan incorporar nuevas capacidades sin detener lo que ya funciona</SlideTitle>
@@ -289,7 +302,7 @@ export default function Home() {
             </div>
           )}
 
-          {slide === 2 && (
+          {slide === 3 && (
             <div className="slide trunk-slide">
               <Kicker>Proyecto troncal · TI/26/140</Kicker>
               <SlideTitle>Una arquitectura que conecta la investigación con la gestión real del Centro</SlideTitle>
@@ -303,7 +316,7 @@ export default function Home() {
             </div>
           )}
 
-          {slide === 3 && (
+          {slide === 4 && (
             <div className="slide method-slide">
               <Kicker>La transformación</Kicker>
               <SlideTitle>Capacidades que se incorporan de forma incremental y reproducible</SlideTitle>
@@ -323,7 +336,7 @@ export default function Home() {
             </div>
           )}
 
-          {slide === 4 && (
+          {slide === 5 && (
             <div className="slide platform-slide">
               <Kicker>Plataforma experimental</Kicker>
               <SlideTitle>Un entorno común para investigar, colaborar y gestionar</SlideTitle>
@@ -335,7 +348,7 @@ export default function Home() {
             </div>
           )}
 
-          {slide === 5 && (
+          {slide === 6 && (
             <div className="slide screenshot-slide">
               <div className="screenshot-copy">
                 <Kicker>Espacio colaborativo</Kicker>
@@ -347,7 +360,7 @@ export default function Home() {
             </div>
           )}
 
-          {slide === 6 && (
+          {slide === 7 && (
             <div className="slide screenshot-slide reverse">
               <ScreenshotPlaceholder type="odoo" />
               <div className="screenshot-copy">
@@ -359,7 +372,7 @@ export default function Home() {
             </div>
           )}
 
-          {slide === 7 && (
+          {slide === 8 && (
             <div className="slide capabilities-slide">
               <Kicker>Soporte para investigar</Kicker>
               <SlideTitle>Seis capacidades institucionales conectadas</SlideTitle>
@@ -376,13 +389,24 @@ export default function Home() {
             </div>
           )}
 
-          {slide === 8 && (
+          {slide === 9 && (
+            <div className="slide community-slide">
+              <div className="community-copy">
+                <Kicker>Comunidad CAETI Rosario</Kicker>
+                <SlideTitle>Las personas que sostienen el ecosistema de investigación</SlideTitle>
+                <p>Dirección, investigadores, docentes e invitados aportan experiencia diversa sobre una plataforma común.</p>
+              </div>
+              <figure><Image src="/assets/investigadores-caeti.png" alt="Investigadores del CAETI Rosario" width={930} height={911} unoptimized /></figure>
+            </div>
+          )}
+
+          {slide === 10 && (
             <div className="slide lines-slide">
               <Kicker>CAETI 2026</Kicker>
               <SlideTitle>Tres líneas reúnen los proyectos del Centro</SlideTitle>
               <div className="research-lines">
                 {(Object.keys(lines) as LineKey[]).map((key, index) => (
-                  <button key={key} style={{ '--line-color': lines[key].color, animationDelay: `${index * 140}ms` } as React.CSSProperties} onClick={() => { setLineFilter(key); go(9); }}>
+                  <button key={key} style={{ '--line-color': lines[key].color, animationDelay: `${index * 140}ms` } as React.CSSProperties} onClick={() => { setLineFilter(key); go(11); }}>
                     <span className="line-number">0{index + 1}</span>
                     <strong>{lines[key].label}</strong>
                     <span>{projects.filter((p) => p.line === key).length} proyectos</span>
@@ -393,7 +417,7 @@ export default function Home() {
             </div>
           )}
 
-          {slide === 9 && (
+          {slide === 11 && (
             <div className="slide projects-slide">
               <div className="projects-heading">
                 <div><Kicker>Mapa vivo del CAETI</Kicker><SlideTitle>Proyectos conectados por una arquitectura común</SlideTitle></div>
@@ -409,7 +433,7 @@ export default function Home() {
             </div>
           )}
 
-          {slide === 10 && (
+          {slide === 12 && (
             <div className="slide actors-slide">
               <Kicker>Sistema sociotécnico</Kicker>
               <SlideTitle>Personas y agentes aportan capacidades diferentes sobre un mismo entorno</SlideTitle>
@@ -422,7 +446,7 @@ export default function Home() {
             </div>
           )}
 
-          {slide === 11 && (
+          {slide === 13 && (
             <div className="slide hiper-slide">
               <div className="hiper-visual">
                 <Image src="/assets/hiperproductividad.jpeg" alt="Identidad visual de Hiperproductividad" width={1920} height={1920} unoptimized />
@@ -437,7 +461,7 @@ export default function Home() {
             </div>
           )}
 
-          {slide === 12 && (
+          {slide === 14 && (
             <div className="slide closing-slide">
               <div className="closing-network" aria-hidden="true"><Network /><span /><span /><span /></div>
               <Kicker>CAETI · UAI</Kicker>
