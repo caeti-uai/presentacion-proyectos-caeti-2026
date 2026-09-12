@@ -273,7 +273,7 @@ export default function Home() {
   const [project, setProject] = useState<Project | null>(null);
   const [lineFilter, setLineFilter] = useState<LineKey | 'all'>('all');
   const [elapsed, setElapsed] = useState(0);
-  const [evidenceIndex, setEvidenceIndex] = useState(0);
+  const [evidenceIndex, setEvidenceIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const timer = window.setInterval(() => setElapsed((value) => value + 1), 1000);
@@ -287,8 +287,8 @@ export default function Home() {
 
   useEffect(() => {
     const handleKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setProject(null);
-      if (project) return;
+      if (event.key === 'Escape') { setProject(null); setEvidenceIndex(null); }
+      if (project || evidenceIndex !== null) return;
       if (['ArrowRight', 'PageDown', ' '].includes(event.key)) {
         event.preventDefault();
         setSlide((value) => Math.min(slideLabels.length - 1, value + 1));
@@ -301,7 +301,7 @@ export default function Home() {
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
-  }, [project]);
+  }, [project, evidenceIndex]);
 
   const filteredProjects = useMemo(
     () => projects.filter((item) => lineFilter === 'all' || item.line === lineFilter),
@@ -434,16 +434,16 @@ export default function Home() {
 
           {slide === 6 && (
             <div className="slide evidence-slide">
-              <div className="evidence-heading"><div><Kicker>Hiperproductividad en acción</Kicker><SlideTitle>Una arquitectura visible en entornos reales</SlideTitle></div><span>{evidenceIndex + 1} / {hiperEvidence.length}</span></div>
-              <div className="evidence-viewer">
-                <button aria-label="Imagen anterior" onClick={() => setEvidenceIndex((value) => (value - 1 + hiperEvidence.length) % hiperEvidence.length)}><ArrowLeft /></button>
-                <figure>
-                  <Image src={hiperEvidence[evidenceIndex].src} alt={hiperEvidence[evidenceIndex].title} width={1600} height={950} unoptimized />
-                  <figcaption><strong>{hiperEvidence[evidenceIndex].title}</strong><span>{hiperEvidence[evidenceIndex].text}</span></figcaption>
-                </figure>
-                <button aria-label="Imagen siguiente" onClick={() => setEvidenceIndex((value) => (value + 1) % hiperEvidence.length)}><ArrowRight /></button>
+              <div className="evidence-heading"><div><Kicker>Hiperproductividad en acción</Kicker><SlideTitle>Una arquitectura visible en entornos reales</SlideTitle></div><span>Seleccioná para ampliar</span></div>
+              <div className="evidence-mosaic">
+                {hiperEvidence.map((item, index) => (
+                  <button key={item.src} onClick={() => setEvidenceIndex(index)} aria-label={`Ampliar ${item.title}`}>
+                    <Image src={item.src} alt={item.title} fill sizes="(max-width: 900px) 45vw, 24vw" unoptimized />
+                    <span>{item.title}</span>
+                    <Maximize2 />
+                  </button>
+                ))}
               </div>
-              <div className="evidence-dots">{hiperEvidence.map((item, index) => <button key={item.src} className={index === evidenceIndex ? 'active' : ''} aria-label={`Ver ${item.title}`} onClick={() => setEvidenceIndex(index)} />)}</div>
             </div>
           )}
 
@@ -582,6 +582,18 @@ export default function Home() {
               ))}
             </div>
           </article>
+        </dialog>
+      )}
+
+      {evidenceIndex !== null && (
+        <dialog open className="image-lightbox" onCancel={() => setEvidenceIndex(null)}>
+          <button className="lightbox-close" aria-label="Cerrar imagen" onClick={() => setEvidenceIndex(null)}><X /></button>
+          <button className="lightbox-nav lightbox-prev" aria-label="Imagen anterior" onClick={() => setEvidenceIndex((evidenceIndex - 1 + hiperEvidence.length) % hiperEvidence.length)}><ArrowLeft /></button>
+          <figure>
+            <Image src={hiperEvidence[evidenceIndex].src} alt={hiperEvidence[evidenceIndex].title} width={1800} height={1100} unoptimized />
+            <figcaption><strong>{hiperEvidence[evidenceIndex].title}</strong><span>{hiperEvidence[evidenceIndex].text}</span></figcaption>
+          </figure>
+          <button className="lightbox-nav lightbox-next" aria-label="Imagen siguiente" onClick={() => setEvidenceIndex((evidenceIndex + 1) % hiperEvidence.length)}><ArrowRight /></button>
         </dialog>
       )}
     </main>
