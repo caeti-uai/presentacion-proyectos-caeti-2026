@@ -129,6 +129,17 @@ const projects: Project[] = [
   },
 ];
 
+const peoplePortraits = [
+  { name: 'María Eugenia Casco', src: '/assets/maria-eugenia-casco.png' },
+  { name: 'Santiago Roatta', src: '/assets/santiago-roatta.png' },
+  { name: 'Alejandro Sartorio', src: '/assets/alejandro-sartorio.png' },
+  { name: 'Alejandro Hernández', src: '/assets/alejandro-hernandez.png' },
+  { name: 'Soledad Ayala', src: '/assets/soledad-ayala.png' },
+  { name: 'María Andrea Guisen', src: '/assets/maria-andrea-guisen.png' },
+  { name: 'Silvia Poncio', src: '/assets/silvia-poncio.png' },
+  { name: 'Pedro López', src: '/assets/pedro-lopez.png' },
+];
+
 const slideLabels = [
   'Portada',
   'El desafío',
@@ -141,6 +152,7 @@ const slideLabels = [
   'Líneas de investigación',
   'Mapa de proyectos',
   'Personas y agentes',
+  'Hiperproductividad',
   'Cierre',
 ];
 
@@ -411,6 +423,21 @@ export default function Home() {
           )}
 
           {slide === 11 && (
+            <div className="slide hiper-slide">
+              <div className="hiper-visual">
+                <Image src="/assets/hiperproductividad.jpeg" alt="Identidad visual de Hiperproductividad" width={1920} height={1920} unoptimized />
+              </div>
+              <div className="hiper-copy">
+                <Kicker>Un caso alineado con la adaptación</Kicker>
+                <SlideTitle>Hiperproductividad convierte cada interacción en contexto para el siguiente ciclo</SlideTitle>
+                <p className="hiper-formula"><span>productividad humana</span><i>×</i><span>contexto</span><i>×</i><span>agentes</span><i>×</i><span>procesos</span><i>×</i><span>trazabilidad</span><strong>= productividadⁿ</strong></p>
+                <p>La plataforma articula proyectos, documentos, evidencias y recorridos. El resultado de un ciclo alimenta al próximo y permite que el sistema evolucione.</p>
+                <a href="https://hiperprodu.asartorio.online/" target="_blank" rel="noreferrer">Explorar Hiperproductividad <ArrowRight size={17} /></a>
+              </div>
+            </div>
+          )}
+
+          {slide === 12 && (
             <div className="slide closing-slide">
               <div className="closing-network" aria-hidden="true"><Network /><span /><span /><span /></div>
               <Kicker>CAETI · UAI</Kicker>
@@ -442,6 +469,14 @@ export default function Home() {
             <h3>{project.title}</h3>
             <div className="modal-person"><span>Dirección</span><strong>{project.director}</strong></div>
             <div className="modal-person"><span>Equipo de investigación</span><p>{project.researchers}</p></div>
+            <div className="team-portraits">
+              {peoplePortraits.filter((person) => project.researchers.includes(person.name)).map((person) => (
+                <div key={person.name}>
+                  <Image src={person.src} alt={`Retrato de ${person.name}`} width={68} height={82} unoptimized />
+                  <span>{person.name}</span>
+                </div>
+              ))}
+            </div>
           </article>
         </dialog>
       )}
